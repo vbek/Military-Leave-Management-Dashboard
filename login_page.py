@@ -1,12 +1,14 @@
 import mysql.connector
 from tkinter import Entry, Tk, Label, Frame, PhotoImage, Button, messagebox, TclError, Toplevel, RAISED
 
-from Employee import Employee
-
 
 class LoginPage:
     def __init__(self, window):
-        self.window = window
+        self.parent_window = window
+        self.parent_window.withdraw()
+        self.login_window = Toplevel(self.parent_window)
+        self.login_window.resizable(False, False)
+        self.login_window.protocol("WM_DELETE_WINDOW", lambda: self.parent_window.destroy())
         self.desired_location_y = int()
         self.desired_location_x = int()
         self.desired_height = int()
@@ -17,7 +19,7 @@ class LoginPage:
         self.port = '3306'
         self.password = '12Bibek!@'
         self.admin_password = ''
-        self.login_frame = Frame(self.window, bg='white')
+        self.login_frame = Frame(self.login_window, bg='white')
         self.t_frame = Frame(self.login_frame, bg='white')
         self.username_entry = Entry(self.t_frame, foreground='grey', bg="white", border=0)
         self.password_entry = Entry(self.t_frame, foreground='grey', bg="white", border=0)
@@ -48,28 +50,27 @@ class LoginPage:
             else:
                 if user_input_password in data_dict[user_input_username.lower()]:
                     self.show_success()
-                    new_window = Tk()
-                    from search_user_data import DisplayUser
-                    DisplayUser(new_window, user_input_username)
+
+
                 else:
                     messagebox.showerror("Error", "Username/Password incorrect")
         else:
             messagebox.showerror("Error", "Username/Password incorrect")
 
     def show_success(self):
-        time_to_wait = 700  # in milliseconds
+        time_to_wait = 100  # in milliseconds
 
         try:
-            self.window.after(time_to_wait, self.window.destroy)
-            messagebox.showinfo("Success", "Login Successful")
-
+            self.login_window.after(time_to_wait, self.login_window.destroy)
+            from search_user_data import DisplayUser
+            DisplayUser(self.parent_window, self.username_entry.get())
         except TclError:
             pass
 
     def sign_up_attempt(self):
         admin_authentication_window_width = 200
         admin_authentication_window_height = 100
-        admin_authentication_window = Toplevel(self.window)
+        admin_authentication_window = Toplevel(self.login_window)
         admin_authentication_window.title("AUTH")
         admin_authentication_window.geometry('{}x{}+{}+{}'.format(admin_authentication_window_width,
                                                                   admin_authentication_window_height,
@@ -91,9 +92,10 @@ class LoginPage:
 
         def authorize_administration(event):
             if entry_password.get() == self.admin_password:
-
                 admin_authentication_window.destroy()
-                SignUp(self.window)
+                self.login_window.destroy()
+                SignUp(self.parent_window)
+
             else:
                 Label(admin_authentication_window,
                       text='Incorrect', font=('Microsoft YaHei UI Light', 10), fg='RED').place(x=115, y=70)
@@ -103,16 +105,16 @@ class LoginPage:
         btn_auth.bind('<ButtonRelease-1>', authorize_administration)
 
     def set_window(self):
-        self.window.title("LOGIN PAGE")
-        self.window.config(background='white')
-        screen_width = self.window.winfo_screenwidth()
-        screen_height = self.window.winfo_screenheight()
+        self.login_window.title("LOGIN PAGE")
+        self.login_window.config(background='white')
+        screen_width = self.parent_window.winfo_screenwidth()
+        screen_height = self.parent_window.winfo_screenheight()
         self.desired_width = 300
         self.desired_height = 500
         self.desired_location_x = int(screen_width / 2 - self.desired_width / 2)
         self.desired_location_y = int(screen_height / 2 - self.desired_height / 2 - 50)
 
-        self.window.geometry(
+        self.login_window.geometry(
             "{}x{}+{}+{}".format(self.desired_width, self.desired_height, self.desired_location_x,
                                  self.desired_location_y))
         self.login_frame.config(width=self.desired_width, height=self.desired_height)
@@ -120,11 +122,10 @@ class LoginPage:
 
         # ************************************** Title Frame ********************************************
         self.t_frame.place(x=0, y=0, width=self.desired_width, height=self.desired_height)
-        Label(self.t_frame, text="Sign In", font=('Microsoft YaHei UI Light', 23), bg="White",
+        Label(self.t_frame, text="LOG IN", font=('Microsoft YaHei UI Light', 23), bg="White",
               fg='#2596be').place(x=0, y=0, width=self.desired_width, height=70)
 
         # ***************************** Username ****************************************
-
         def clear_username_on_focus(event):
             username_text = self.username_entry.get()
             if username_text == '' or username_text.capitalize() == 'Username':
@@ -197,12 +198,15 @@ class LoginPage:
                                 width=6)
         sign_up_button.place(x=170, y=270)
 
-        self.window.mainloop()
+        self.login_window.mainloop()
 
 
 class SignUp:
-    def __init__(self, window):
-        self.window = window
+    def __init__(self, login_window):
+        self.parent_window = login_window
+        self.sign_up_window = Toplevel(login_window)
+        self.sign_up_window.resizable(False, False)
+        self.sign_up_window.protocol("WM_DELETE_WINDOW", lambda: self.parent_window.destroy())
         self.desired_location_y = int()
         self.desired_location_x = int()
         self.desired_height = int()
@@ -213,7 +217,7 @@ class SignUp:
         self.port = '3306'
         self.password = '12Bibek!@'
         self.admin_password = ''
-        self.sign_up_frame = Frame(self.window, bg='white')
+        self.sign_up_frame = Frame(self.sign_up_window, bg='white')
         self.t_frame = Frame(self.sign_up_frame, bg='white')
         self.username_entry = Entry(self.t_frame, foreground='grey', bg="white", border=0)
         self.password_entry = Entry(self.t_frame, foreground='grey', bg="white", border=0)
@@ -226,15 +230,15 @@ class SignUp:
         return my_con
 
     def set_window(self):
-        self.window.title("SIGN UP PAGE")
-        self.window.config(background='white')
-        screen_width = self.window.winfo_screenwidth()
-        screen_height = self.window.winfo_screenheight()
+        self.sign_up_window.title("SIGN UP PAGE")
+        self.sign_up_window.config(background='white')
+        screen_width = self.parent_window.winfo_screenwidth()
+        screen_height = self.parent_window.winfo_screenheight()
         self.desired_width = 300
         self.desired_height = 500
         self.desired_location_x = int(screen_width / 2 - self.desired_width / 2)
         self.desired_location_y = int(screen_height / 2 - self.desired_height / 2 - 50)
-        self.window.geometry(
+        self.sign_up_window.geometry(
             "{}x{}+{}+{}".format(self.desired_width, self.desired_height, self.desired_location_x,
                                  self.desired_location_y))
         self.sign_up_frame.config(width=self.desired_width, height=self.desired_height)
@@ -344,10 +348,12 @@ class SignUp:
                            border=0, bg='white', fg='#2596be', cursor='hand2',
                            width=6)
         btn_login.place(x=170, y=380)
-        self.window.mainloop()
+        self.sign_up_window.mainloop()
 
     def login_attempt(self):
-        LoginPage(self.window)
+        self.sign_up_window.destroy()
+        LoginPage(self.parent_window)
+
 
     def create_user(self):
         sign_up_conn = self.data_connection()

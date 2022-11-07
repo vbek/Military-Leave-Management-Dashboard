@@ -71,7 +71,7 @@ class Employee:
 
         #  **************************************** Main Frame  **************************************** #
         self.main_frame = Frame(self.window, bd=2, relief=RIDGE, bg='WHITE')
-        self.main_frame.place(x=10, y=70, width=self.window_width - 30, height=self.window_height - 90)
+        self.main_frame.place(x=35, y=70, width=self.window_width - 30, height=self.window_height - 90)
 
         #  **************************************** Upper Frame  **************************************** #
         self.upper_frame = LabelFrame(self.main_frame, bd=2, relief=RIDGE, text="Employee Information",
@@ -379,6 +379,7 @@ class Employee:
         self.phone_details_tree.column("sex", width=50)
         self.phone_details_tree.column("MaritalStatus", width=60)
         self.phone_details_tree.column("Bloodgp", width=60)
+        self.window.mainloop()
 
     # **************************************** Close Button ********************************* #
     def close_app(self):
@@ -622,7 +623,3 @@ class Employee:
         except Exception as ex:
             messagebox.showerror('Error', f'{str(ex)}', parent=self.window)
 
-#
-# win = Tk()
-# Employee(win, "bibek")
-# win.mainloop()

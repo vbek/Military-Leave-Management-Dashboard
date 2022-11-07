@@ -1,37 +1,38 @@
 import tkinter
-from tkinter import Label, Frame, Entry, ttk, Button
+from tkinter import Tk, Label, Frame, Entry, ttk, Button
 
 
 class DisplayUser:
     def __init__(self, window, user):
         self.search_key = ""
         self.parent_window = window
+        self.search_window = tkinter.Toplevel(self.parent_window)
         self.user = user
         self.set_window()
 
     def set_window(self):
-        screen_width = self.parent_window.winfo_screenwidth()
-        screen_height = self.parent_window.winfo_screenheight()
+        screen_width = self.search_window.winfo_screenwidth()
+        screen_height = self.search_window.winfo_screenheight()
         window_width = int(screen_width / 5)
         window_height = int(screen_height / 5)
-        self.parent_window.geometry('{}x{}'.format(window_width, window_height))
-        self.parent_window.resizable(False, False)
-        self.parent_window.config(bg='white')
-        self.parent_window.title("FIND USER")
+        self.search_window.geometry('{}x{}'.format(window_width, window_height))
+        self.search_window.resizable(False, False)
+        self.search_window.config(bg='white')
+        self.search_window.title("FIND USER")
 
         # ************************************ SEARCH BY LABEL ****************************************
-        lbl_search_by = Label(self.parent_window, text="SEARCH BY:", fg='teal', bg='orange', anchor='w')
+        lbl_search_by = Label(self.search_window, text="SEARCH BY:", fg='teal', bg='orange', anchor='w')
         lbl_search_by.place(x=0, y=0)
 
         # ************************************ FRAME QUERY ********************************************
-        frame_query = Frame(self.parent_window, bg='white')
+        frame_query = Frame(self.search_window, bg='white')
         frame_query.place(x=0, y=30, width=window_width, height=window_height)
 
         # ************************************ SEARCH COMBO BOX ***************************************
         search_key_tuple = ("CompNo", "Rnk", "Name", "Phone", "Unit", 'Bloodgp')
         search_text_tuple = ("Comp No", 'Rank', 'Name', 'Phone No', 'Unit', 'Blood Gp')
         text_query = tkinter.StringVar()
-        combo_search = ttk.Combobox(self.parent_window, textvariable=text_query, state='readonly', width=10)
+        combo_search = ttk.Combobox(self.search_window, textvariable=text_query, state='readonly', width=10)
         combo_search['values'] = search_text_tuple
         combo_search.place(x=80, y=0)
         combo_search.current(0)
@@ -58,7 +59,7 @@ class DisplayUser:
 
         # *********************************** SEARCH BUTTON ******************************************
         def main_dashboard(e):
-            self.parent_window.iconify()
+            self.search_window.destroy()
             from Employee import Employee
             Employee(self.parent_window, self.user)
 
@@ -68,4 +69,5 @@ class DisplayUser:
         btn_add_user = Button(frame_query, width=10, bg='orange', text="ADD USER")
         btn_add_user.place(x=int(window_width - btn_search.winfo_reqwidth()), y=80)
         btn_add_user.bind('<ButtonRelease-1>', main_dashboard)
-        self.parent_window.mainloop()
+        self.search_window.mainloop()
+
