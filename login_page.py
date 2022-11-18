@@ -62,8 +62,8 @@ class LoginPage:
 
         try:
             self.login_window.after(time_to_wait, self.login_window.destroy)
-            from search_user_data import DisplayUser
-            DisplayUser(self.parent_window, self.username_entry.get())
+            from Employee import Employee
+            Employee(self.parent_window, self.username_entry.get())
         except TclError:
             pass
 

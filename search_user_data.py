@@ -1,5 +1,5 @@
 import tkinter
-from tkinter import Tk, Label, Frame, Entry, ttk, Button
+from tkinter import Label, Frame, Entry, ttk, Button
 
 
 class DisplayUser:
@@ -71,3 +71,5 @@ class DisplayUser:
         btn_add_user.bind('<ButtonRelease-1>', main_dashboard)
         self.search_window.mainloop()
 
+
+DisplayUser(tkinter.Tk(), "bibek")
