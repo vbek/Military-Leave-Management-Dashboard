@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DdlMappings">
-    <mapping uuid="8cdeb174-7157-4ecc-b9c2-8b79eed3b574" name="login_details@localhost Mapping">
-      <data-sources db="c9566a47-3f9f-410f-838d-617157d87c7c" ddl="d660e362-f975-46c8-9ba7-20b22fbd867f" />
+    <mapping uuid="565bb132-586f-43ce-9179-061b4212205c" name="@localhost Mapping">
+      <data-sources db="cf697a90-990c-4aa4-80cd-80d78868409d" />
+      <scope>
+        <node kind="schema" qname="bibekdb" />
+      </scope>
     </mapping>
-  </component>
-  <component name="SqlDataSourceStorage">
-    <option name="dataSources">
-      <list>
-        <State>
-          <option name="id" value="d660e362-f975-46c8-9ba7-20b22fbd867f" />
-          <option name="name" value="login_details@localhost (DDL)" />
-          <option name="languageId" value="MySQL" />
-          <option name="urls">
-            <array>
-              <option value="file://$PROJECT_DIR$/bibekdb" />
-            </array>
-          </option>
-          <option name="scriptOptions">
-            <map>
-              <entry key="QualifyWithSchema" value="ALWAYS" />
-            </map>
-          </option>
-        </State>
-      </list>
-    </option>
   </component>
 </project>

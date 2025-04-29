@@ -1,7 +1,10 @@
-from tkinter import Tk
+from LoginWindow import LoginPage
 
-from login_page import LoginPage
 
-if __name__ == '__main__':
-    parent_window = Tk()
-    login_page = LoginPage(parent_window)
+class MainApp:
+    def __init__(self):
+        if __name__ == '__main__':
+            LoginPage()
+
+
+MainApp()

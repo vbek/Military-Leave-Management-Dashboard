@@ -1,0 +1,65 @@
+To Upload a Unit file you should have following:
+1. Excel  file  must be in .csv format and file name should be
+named  as  the  name  of  the  unit  like  [Kalidal Bn.csv]
+Note: Please avoid using '()', '-', '.', or any other special
+characters in the file name
+2. Columns should be  ordered as (Columns are Case Sensitive):
+    (a) Unit
+    (b) CompNo
+    (c) Rnk
+    (d) Name
+    (d) Phone
+    (e) Email
+    (f) Trade
+    (g) Address
+    (h) DOB
+    (i) Sex
+    (j) bloodgp
+    (k) Remarks
+Note: DOB is Date of  Birth,  and  it  should be in 2023-01-01
+(yyyy-mm-dd) AD format.
+3. You  should  have  at  least  one  row  completely  filled.
+4. To upload a leave record of a unit,  select the unit on the
+left Selection box before clicking on the  Upload/Update Leave
+Record Button, otherwise you may try to upload data into other
+unit which won't work.
+5. Leave Record again should have .csv file and should include
+following columns (The columns are case sensitive):
+    (a) CompNo
+    (b) LeaveDate
+    (c) ReturnDate
+Note: LeaveDate and ReturnDate should be in format same as DOB
+6. There are basically two windows. One is Home Window and the
+other one is User Info Window.
+7. Home Window shows the leave record of the unit based on the
+selection of unit on the left selection box.
+8. There is a color coding in the display table.
+    (a) Red refers that the  specific  person hadn't been on a
+    leave for more than 90 days
+    (b) Yellow refers that the  specific  person  recently came
+    from home (less than 90 days)
+    (c) Green refers that the specific  person is  currently on
+    leave
+9. You can record a leave  for  a specific person  by selecting
+person from the table and selecting leave start day (in AD) and
+no of days and pressing Record leave button.
+10. You can  check  the  BMI,  and  maximum/minimum  limit  for
+specific age group both for M/F.
+
+11. In User info Window, if you are admin, you can add,  update,
+delete user data from the table and also see two more  buttons,
+Edit quote and see quotes. Other than admin, you have  no access
+to delete the data.
+12. You can add data  in  this  window.  You  must  enter  Unit,
+Comp No, Rank, and  Name, other column however can remain empty.
+You can also  upload person user pic on the right  side  of  the
+window by clicking on the button on frame.
+12. You can  find "SELECT UNIT" selection box on the down frame,
+which shows   the  data  of  specific unit based  on  selection.
+13. To  update  data  you  must  first select  the person in the
+table, modify data in the above entry box and  then press update
+button.
+14. To  delete  a  data  you  first need to  select the data and
+press delete button.
+15. Clear Data button clears  all  the   data  in  the entry box.
+

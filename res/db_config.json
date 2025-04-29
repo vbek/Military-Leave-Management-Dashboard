@@ -1,0 +1,7 @@
+{
+  "host": "localhost",
+  "user": "appuser",
+  "password": "unit123",
+  "port": 3306,
+  "database": "bibekdb"
+}
